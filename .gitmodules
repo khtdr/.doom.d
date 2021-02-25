@@ -1,0 +1,3 @@
+[submodule "ebnf-mode"]
+	path = local/ebnf-mode
+	url = https://github.com/khtdr/ebnf-mode
