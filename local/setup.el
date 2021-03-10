@@ -13,6 +13,7 @@
 ;; (load! "./ipa/ipa.el")
 (load! "./iterm2/iterm2.el")
 (load! "./typescript/typescript.el")
+(load! "./sqlite-dump/sqlite-dump.el")
 
 ;; (load! "./slack.el")
 

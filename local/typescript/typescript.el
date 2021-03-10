@@ -1,14 +1,26 @@
-
-;; for org mode code blocks
-(add-hook 'typescript-mode-hook
-          (lambda ()
+(defun tide-setup-hook ()
             (local-set-key (kbd "C-x C-e") 'ts-send-last-sexp)
             (local-set-key (kbd "C-M-x") 'ts-send-last-sexp-and-go)
             (local-set-key (kbd "C-c b") 'ts-send-buffer)
             (local-set-key (kbd "C-c C-b") 'ts-send-buffer-and-go)
-            (local-set-key (kbd "C-c l") 'ts-load-file-and-go)))
-(setq rtog/mode-repl-alist '((typescript-mode . run-ts)))
+            (local-set-key (kbd "C-c l") 'ts-load-file-and-go)
+            (setq rtog/mode-repl-alist '((typescript-mode . run-ts)))
 
-(setq js-indent-level 2)
-(setq js2-basic-offset 2)
-(setq typescript-indent-level 2)
+            (setq js-indent-level 2)
+            (setq js2-basic-offset 2)
+            (setq typescript-indent-level 2)
+            (setq web-mode-enable-auto-quoting nil)
+            (setq web-mode-markup-indent-offset 2)
+            (setq web-mode-code-indent-offset 2)
+            (setq web-mode-attr-indent-offset 2)
+            (setq web-mode-attr-value-indent-offset 2)
+            (tide-hl-identifier-mode +1)
+
+            (flycheck-add-mode 'typescript-tslint 'web-mode)
+            (add-hook 'web-mode-hook 'company-mode)
+            (add-hook 'web-mode-hook 'prettier-js-mode)
+            (add-hook 'web-mode-hook #'turn-on-smartparens-mode t))
+
+
+(add-hook 'typescript-mode-hook 'tide-setup-hook)
+(add-hook 'typescript-tsx-mode-hook 'tide-setup-hook)
